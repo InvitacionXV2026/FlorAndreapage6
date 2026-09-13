@@ -1,1 +1,1789 @@
-<p>hola6</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mis XV Años | Flor Andrea</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --lilac:#b49acb;
+  --deep:#715776;
+  --soft:#eee7f2;
+  --cream:#fffdf9;
+  --gold:#b89b6a;
+  --text:#514755;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--text);
+  font-family:Montserrat,sans-serif;
+  font-weight:300;
+}
+
+/* =========================
+   PANTALLA DE BIENVENIDA
+========================= */
+
+#welcomeScreen{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  transition:opacity 1s ease;
+}
+
+#loopVideo,
+#transitionVideo{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+#transitionVideo{
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 0.5s ease;
+}
+
+#transitionVideo.active{
+  opacity:1;
+}
+
+#welcomeOverlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(0,0,0,.15),
+    rgba(0,0,0,.35)
+  );
+  pointer-events:none;
+  z-index:1;
+}
+
+#openInvitation{
+position: absolute;
+bottom: 30px;
+left: 50%;
+transform: translateX(-50%);
+z-index: 2;
+display: flex;
+align-items: center;
+gap: 8px;
+color: var(--deep);
+font-size: 11px;
+letter-spacing: 2px;
+text-transform: uppercase;
+text-decoration: none;
+background: rgba(255, 255, 255, 0.75);
+padding: 8px 14px;
+border-radius: 20px;
+backdrop-filter: blur(4px);
+transition: .3s;
+}
+
+#openInvitation:hover{
+  background:white;
+  color:var(--gold);
+}
+
+#mainInvitation{
+  display:none;
+}
+
+#mainInvitation.show{
+  display:block;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(rgba(255,255,255,.55),rgba(255,255,255,.55)),
+    url("https://6a9f95e744e10f7189267349.imgix.net/sandbox/bk.png")
+    center/cover;
+}
+
+.hero:before,
+.hero:after{
+  content:"";
+  position:absolute;
+  color:rgba(180,154,203,.22);
+  font-size:25rem;
+  line-height:1;
+}
+
+.hero:before{top:-100px;left:-70px}
+.hero:after{bottom:-130px;right:-50px}
+
+.hero-content{
+  position:relative;
+  z-index:1;
+  padding:30px;
+}
+
+.kicker{
+  letter-spacing:5px;
+  text-transform:uppercase;
+  font-size:20px;
+  color:var(--deep);
+}
+
+.name{
+  font-family:"Great Vibes",cursive;
+  font-size:clamp(80px,15vw,180px);
+  font-weight:400;
+  color:var(--deep);
+  line-height:.8;
+  margin:30px 0 10px;
+}
+
+.xv{
+  font-family:"Cormorant Garamond",serif;
+  font-size:34px;
+  letter-spacing:8px;
+  text-transform:uppercase;
+}
+
+.date{
+  margin:35px auto 0;
+  border-top:1px solid var(--gold);
+  border-bottom:1px solid var(--gold);
+  padding:12px 30px;
+  width:max-content;
+  max-width:100%;
+  letter-spacing:4px;
+  font-size:25px;
+}
+
+/* Flecha inferior izquierda */
+.scroll-indicator-left{
+position: absolute;
+bottom: 30px;
+left: 50%;
+transform: translateX(-50%);
+z-index: 2;
+display: flex;
+align-items: center;
+gap: 8px;
+color: var(--deep);
+font-size: 11px;
+letter-spacing: 2px;
+text-transform: uppercase;
+text-decoration: none;
+background: rgba(255, 255, 255, 0.75);
+padding: 8px 14px;
+border-radius: 20px;
+backdrop-filter: blur(4px);
+transition: .3s;
+}
+
+.scroll-indicator-left:hover{
+  background:white;
+  color:var(--gold);
+}
+
+/* =========================
+   MUSICA
+========================= */
+
+.music{
+  position:fixed;
+  right:22px;
+  top:22px;
+  z-index:20;
+  border:1px solid var(--deep);
+  background:#fffdf9cc;
+  border-radius:50%;
+  width:48px;
+  height:48px;
+  color:var(--deep);
+  cursor:pointer;
+}
+
+/* =========================
+   GENERAL
+========================= */
+
+section{
+  padding:90px 20px;
+  text-align:center;
+}
+
+.container{
+  max-width:1000px;
+  margin:auto;
+}
+
+.intro{
+  background:#f5f0f7;
+}
+
+.lead{
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(27px,4vw,42px);
+  line-height:1.25;
+  max-width:700px;
+  margin:0 auto 35px;
+}
+
+.flower{
+  color:var(--lilac);
+  font-size:30px;
+  margin:15px;
+}
+
+h2{
+  font-family:"Cormorant Garamond",serif;
+  font-size:50px;
+  font-weight:500;
+  color:var(--deep);
+  margin:0 0 2px;
+}
+
+.subtitle{
+  letter-spacing:2px;
+  font-size:12px;
+  text-transform:uppercase;
+  margin-bottom:30px;
+}
+
+/* =========================
+   CUENTA REGRESIVA
+========================= */
+
+.countdown{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  max-width:650px;
+  margin:35px auto 0;
+}
+
+.time{
+  border:1px solid #d9cce0;
+  padding:22px 8px;
+  background:white;
+}
+
+.time b{
+  display:block;
+  font-family:"Cormorant Garamond",serif;
+  font-size:48px;
+  font-weight:500;
+  color:var(--deep);
+}
+
+.time span{
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+/* =========================
+   EVENTO
+========================= */
+
+.event{
+  background:white;
+}
+
+.event-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  margin-top:45px;
+}
+
+.card{
+  padding:25px 18px;
+  border-left:1px solid #dfd4e5;
+}
+
+.card:first-child{
+  border-left:0;
+}
+
+.icon{
+  font-size:32px;
+  color:var(--gold);
+}
+
+.card h3{
+  font-family:"Cormorant Garamond",serif;
+  font-size:27px;
+  font-weight:500;
+  margin:12px 0;
+}
+
+.card p{
+  font-size:13px;
+  line-height:1.8;
+  margin:0 0 18px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 13px 23px;
+  border: 1px solid var(--deep);
+  color: var(--deep);
+  text-decoration: none;
+  background: transparent;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: .3s;
+  cursor: pointer;
+  border-radius: 50px;
+}
+
+.btn:hover {
+  background: var(--deep);
+  color: white;
+}
+
+/* =========================
+   GALERIA / SLIDER
+========================= */
+
+.gallery{
+  background:#faf7f8;
+}
+
+.slider-container{
+  width:100%;
+  max-width:900px;
+  margin:auto;
+  position:relative;
+  overflow:hidden;
+  border-radius:15px;
+}
+
+.slider{
+  position:relative;
+  width:100%;
+}
+
+.slide{
+  display:none;
+  width:100%;
+  animation:fade .10s ease-in-out;
+}
+
+.slide.active{
+  display:block;
+}
+
+.slide img{
+  width:100%;
+  height:auto;
+  max-height:750px;
+  object-fit:cover;
+  display:block;
+  border-radius:15px;
+}
+
+@keyframes fade{
+  from{opacity:.3}
+  to{opacity:1}
+}
+
+.prev,
+.next{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  border:none;
+  background:rgba(0,0,0,.0);
+  color:white;
+  font-size:28px;
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  cursor:pointer;
+  transition:.3s;
+  z-index:10;
+}
+
+.prev:hover,
+.next:hover{
+  background:rgba(0,0,0,.10);
+}
+
+.prev{left:20px}
+.next{right:20px}
+
+.dots{
+  position:absolute;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:10px;
+}
+
+.dot{
+  width:10px;
+  height:10px;
+  background:rgba(255,255,255,.5);
+  border-radius:50%;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.dot.active{
+  background:white;
+  transform:scale(1.3);
+}
+
+/* =========================
+   DETALLES
+========================= */
+
+.details{
+  background:white;
+}
+
+.detail-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:30px;
+}
+
+.detail h3{
+  font-family:"Cormorant Garamond",serif;
+  font-size:32px;
+  color:var(--deep);
+  font-weight:500;
+}
+
+.detail p{
+  font-size:13px;
+  line-height:1.8;
+}
+
+/* =========================
+   REGALOS
+========================= */
+
+.gift{
+  background:
+    linear-gradient(rgba(113,87,118,.85),rgba(113,87,118,.9)),
+    url("https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1600&q=80")
+    center/cover;
+  color:white;
+}
+
+.gift h2{
+  color:white;
+}
+
+.gift .btn{
+  border-color:white;
+  color:white;
+}
+
+.gift .btn:hover{
+  background:white;
+  color:var(--deep);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  padding:55px 20px;
+  text-align:center;
+  background:#514755;
+  color:#eee7f2;
+}
+
+footer .footer-name{
+  font-family:"Great Vibes",cursive;
+  font-size:60px;
+}
+
+/* =========================
+   MODALES
+========================= */
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(50,35,55,.65);
+  z-index:50;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal.active{
+  display:flex;
+}
+
+.modal-box{
+  background:#fffdf9;
+  max-width:500px;
+  width:100%;
+  padding:45px 30px;
+  text-align:center;
+  position:relative;
+}
+
+.close{
+  position:absolute;
+  right:15px;
+  top:10px;
+  border:0;
+  background:none;
+  font-size:25px;
+  cursor:pointer;
+  color:var(--deep);
+}
+
+.modal-box h3{
+  font-family:"Cormorant Garamond",serif;
+  font-size:38px;
+  color:var(--deep);
+  margin:0 0 15px;
+}
+
+input,
+select,
+textarea{
+  width:100%;
+  padding:15px;
+  margin:7px 0 14px;
+  border:1px solid #d9cce0;
+  background:white;
+  font-family:Montserrat,sans-serif;
+  font-size:13px;
+  outline:none;
+}
+
+textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:700px){
+
+  section{
+    padding:70px 18px;
+  }
+
+  .name{
+    font-size:clamp(75px,20vw,120px);
+  }
+
+  .xv{
+    font-size:25px;
+    letter-spacing:5px;
+  }
+
+  .date{
+    font-size:11px;
+    letter-spacing:2px;
+  }
+
+  .scroll-indicator-left{
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 6px 10px;
+    font-size: 10px;
+  }
+
+  .event-grid,
+  .detail-grid{
+    grid-template-columns:1fr;
+  }
+
+  .card{
+    border-left:0;
+    border-top:1px solid #dfd4e5;
+  }
+
+  .card:first-child{
+    border-top:0;
+  }
+
+  .countdown{
+    gap:6px;
+  }
+
+  .time{
+    padding:15px 3px;
+  }
+
+  .time b{
+    font-size:34px;
+  }
+
+  .prev,
+  .next{
+    width:40px;
+    height:40px;
+    font-size:20px;
+  }
+
+  .prev{left:10px}
+  .next{right:10px}
+
+  .dots{
+    bottom:12px;
+  }
+}
+	.welcomeScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh; /* Solución para navegadores móviles modernos */
+  z-index: 99999;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+}
+
+.welcomeScreen video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: cover; /* Asegura que el video llene toda la pantalla sin deformarse */
+}
+
+.welcomeOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Capa oscura opcional para resaltar el texto/botón */
+  z-index: 1;
+}
+
+.openInvitation {
+  position: relative;
+  z-index: 2;
+  /* Agrega aquí los estilos estéticos de tu botón (padding, color, fuente, etc.) */
+}
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     PANTALLA DE BIENVENIDA
+===================================================== -->
+
+<div id="welcomeScreen">
+  <!-- Video en Loop Inicial -->
+  <video id="loopVideo" autoplay loop muted playsinline preload="auto">
+    <source src="loop.mp4" type="video/mp4">
+  </video>
+
+  <!-- Video de Transición -->
+  <video id="transitionVideo" playsinline preload="auto">
+    <source src="transicion.mp4" type="video/mp4">
+  </video>
+
+  <div id="welcomeOverlay"></div>
+
+  <button id="openInvitation">
+    Abrir invitación
+  </button>
+</div>
+
+<!-- =====================================================
+     INVITACIÓN PRINCIPAL
+===================================================== -->
+
+<div id="mainInvitation">
+
+  <!-- MÚSICA -->
+  <button class="music" id="musicBtn" title="Activar música">♫</button>
+
+  <audio id="music" loop preload="auto">
+    <source src="princesas.mp3" type="audio/mpeg">
+  </audio>
+
+
+  <!-- HERO -->
+  <header class="hero">
+
+    <div class="hero-content">
+
+      <div class="kicker">
+        Estás invitado a celebrar
+      </div>
+
+      <div class="name">
+        Flor Andrea
+      </div>
+
+      <div class="xv">
+        Mis XV Años
+      </div>
+
+      <div class="date">
+        26 · SEPTIEMBRE · 2026 
+      </div><br><br>
+ <!-- Flecha inferior izquierda invitando a seguir leyendo -->
+    <a href="#parentsSection" class="scroll-indicator-left">
+      <span style="font-size: 16px;">↓</span>
+      <span>Conoce la historia completa</span>
+    </a>
+    </div>
+
+   
+  </header>
+
+
+  <!-- SECCIÓN DE PADRES Y PADRINOS -->
+  <section id="parentsSection" style="background: white; padding: 50px 0px; text-align: center;">
+    <div class="container">
+         
+		<p class="lead" style="font-size: clamp(18px, 3.5vw, 18px); line-height: 1.6; max-width: 850px; margin: 0 auto; color: var(--text);">
+        <b></b>Hay momentos en la vida que se quedan grabados para siempre. Con la alegría de verla florecer
+        </p>
+		<p class="subtitle">
+        <b></b><br>su papá:</p>
+		<div class="name">
+		<p class="name" style="font-size: clamp(30px, 3.5vw, 30px);">
+        Geovanny Molina Toala</p></div>
+	    <p class="subtitle">
+        <b></b><br>y sus padrinos:</p>
+		<p class="name" style="font-size: clamp(30px, 3.5vw, 30px);">
+        Angel Molina Toala <br>y<br>Jessica Molina Toala<br></p>
+		<div class="lead">
+		<p class="lead" style="font-size: clamp(18px, 3.5vw, 18px); line-height: 1.6; max-width: 850px; margin: 0 auto; color: var(--text);">	
+        te invitan a compartir la mágica celebración de los XV de 
+		<div class="name">
+		<p class="name" style="font-size: clamp(40px, 3.5vw, 40px); color:lightpink">
+        Flor Andrea Molina Ibarra</p></div>
+        <div class="flower">❀↓❀</div>
+    
+  </section>
+
+
+  <!-- INTRO -->
+  <section class="intro">
+
+      <div class="container">
+
+      <h2>La celebración</h2>
+
+      <p class="subtitle">
+        Guarda esta fecha especial
+      </p>
+
+      <div class="event-grid">
+
+        <div class="card">
+
+          <div class="icon">♡</div>
+
+          <h3>Fecha</h3>
+
+          <p>
+            Sábado<br>
+            <b>26 de Septiembre de 2026</b><br>
+            19:00 horas
+          </p>
+
+         <button
+            class="btn"
+            onclick="openModal('Asistencia')">
+            Confirmar Asistencia
+          </button>
+
+        </div>
+
+        <div class="card">
+
+          <div class="icon">⌂</div>
+
+          <h3>Misa</h3>
+
+          <p>
+            <b>
+              Iglesia Espiritu Santo<br>
+              Los Bosques
+            </b><br>
+            Calle 5 de junio 
+          </p>
+         <a
+            class="btn"
+            target="_blank"
+            href="https://maps.app.goo.gl/fCAqKXF6RbfD1KhV6">
+            Cómo llegar
+          </a>
+         
+        </div>
+
+
+        <div class="card">
+
+          <div class="icon">⌖</div>
+
+          <h3>Lugar</h3>
+
+          <p>
+            Salón de Eventos<br>
+            El Emperador<br>
+            Calle 5 de junio y Ulbio Alcivar
+			</p>
+
+          <a
+            class="btn"
+            target="_blank"
+            href="https://maps.app.goo.gl/NGvPBMepJF3QCeCi9">
+            Cómo llegar
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+   </section>
+
+
+  <!-- EVENTO -->
+ <div class="container" style="padding: 50px 0px; text-align: center;">
+      <div class="flower">❀</div> 
+      <h2>Admisión <span style="font-size: 1.5em; font-weight: bold;">6</span> personas</h2>
+      <p class="lead"><br>
+        Te esperamos para compartir la alegría de una noche
+        que será mágica, inolvidable y única.
+      </p>
+
+      <div class="flower">❀</div>
+
+      <p class="subtitle">
+        La cuenta regresiva ha comenzado
+      </p>
+
+      <div class="countdown">
+
+        <div class="time">
+          <b id="days">00</b>
+          <span>Días</span>
+        </div>
+
+        <div class="time">
+          <b id="hours">00</b>
+          <span>Horas</span>
+        </div>
+
+        <div class="time">
+          <b id="minutes">00</b>
+          <span>Minutos</span>
+        </div>
+
+        <div class="time">
+          <b id="seconds">00</b>
+          <span>Segundos</span>
+        </div>
+
+      </div>
+
+    </div>		
+	
+  <!-- GALERÍA -->
+  <section class="gallery">
+
+    <div class="container">
+
+      <h2>Un recorrido de mis 15 años</h2>
+
+      <p class="subtitle">
+        Momentos que guardo en mi corazón
+      </p>
+
+
+      <div class="slider-container">
+
+        <div class="slider">
+
+          <div class="slide active">
+            <img
+              src="https://6a9f95e744e10f7189267349.imgix.net/sandbox/andrea-01.png"
+              alt="XV años 1">
+          </div>
+
+          <div class="slide">
+            <img
+              src="https://6a9f95e744e10f7189267349.imgix.net/sandbox/andrea-02.png"
+              alt="XV años 2">
+          </div>
+
+          <div class="slide">
+            <img
+              src="https://6a9f95e744e10f7189267349.imgix.net/sandbox/andrea-10.png"
+              alt="XV años 3">
+          </div>
+
+          <div class="slide">
+            <img
+              src="https://6a9f95e744e10f7189267349.imgix.net/sandbox/andrea-04.png"
+              alt="XV años 4">
+          </div>
+
+          <div class="slide">
+            <img
+              src="https://6a9f95e744e10f7189267349.imgix.net/sandbox/andrea-05.png"
+              alt="XV años 5">
+          </div>
+
+          <div class="slide">
+            <img
+              src="https://6a9f95e744e10f7189267349.imgix.net/sandbox/andrea-06.png"
+              alt="XV años 6">
+          </div>
+
+          <div class="slide">
+            <img
+              src="https://6a9f95e744e10f7189267349.imgix.net/sandbox/andrea-07.png"
+              alt="XV años 7">
+          </div>
+
+          <div class="slide">
+            <img
+              src="https://6a9f95e744e10f7189267349.imgix.net/sandbox/andrea-09.png"
+              alt="XV años 8">
+          </div>
+
+        </div>
+
+
+        <button class="prev" aria-label="Foto anterior">
+          &#10094;
+        </button>
+
+        <button class="next" aria-label="Foto siguiente">
+          &#10095;
+        </button>
+
+
+        <div class="dots">
+
+          <span class="dot active"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- DETALLES -->
+  <section class="details">
+
+    <div class="container">
+
+      <h2>Detalles de la fiesta</h2>
+
+      <p class="subtitle">
+        Todo lo que debes saber
+      </p>
+
+      <div class="detail-grid">
+
+
+        <div class="detail">
+
+          <div class="flower">♫</div>
+
+          <h3>Música</h3>
+
+          <p>
+            ¿Cuál es esa canción que no puede faltar
+            en nuestra celebración?
+          </p>
+
+          <button
+            class="btn"
+            onclick="openModal('songModal')">
+            Sugerir canción
+          </button>
+
+        </div>
+
+
+        <div class="detail">
+
+          <div class="flower">♕</div>
+
+          <h3>Código de Vestimenta</h3>
+
+          <p>
+            Te invitamos a ser parte de esta
+            noche llena de magia y estilo.
+          </p>
+
+          <button
+            class="btn"
+            onclick="openModal('dressModal')">
+            Ver más
+          </button>
+
+        </div>
+
+
+        <div class="detail">
+
+          <div class="flower">✦</div>
+
+          <h3>Tips & Notas</h3>
+
+          <p>
+            Prepárate para disfrutar, bailar y crear
+            recuerdos inolvidables.
+          </p>
+
+          <button
+            class="btn"
+            onclick="openModal('tipsModal')">
+            + Info
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- REGALOS -->
+  <section class="gift">
+
+    <div class="container">
+
+      <div class="flower">❀</div>
+
+      <h2>Regalos</h2>
+
+      <p class="lead" style="font-size:30px">
+        Si deseas regalarme algo más que tu hermosa presencia...
+      </p>
+
+      <button
+        class="btn"
+        onclick="openModal('giftModal')">
+        Ver información
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer>
+
+    <div class="footer-name">
+      Flor Andrea
+    </div>
+
+    <div class="xv" style="font-size:20px">
+      Mis XV Años
+    </div>
+
+    <p style="font-size:11px;letter-spacing:2px;margin-top:25px">
+      26 · SEPTIEMBRE · 2026
+    </p>
+
+  </footer>
+
+  <!-- MODAL SUGERIR CANCIÓN -->
+  <div class="modal" id="songModal">
+
+    <div class="modal-box">
+
+      <button
+        class="close"
+        onclick="closeModal('songModal')">
+        ×
+      </button>
+
+      <h3>Sugerir canción</h3>
+
+      <p>
+        Ayúdame a crear la playlist perfecta.
+      </p>
+
+      <input
+        type="text"
+        id="songName"
+        placeholder="Tu nombre">
+
+      <input
+        type="text"
+        id="songArtist"
+        placeholder="Canción y artista">
+
+      <input
+        type="text"
+        id="songLink"
+        placeholder="Link de Spotify o YouTube">
+
+      <button
+        class="btn"
+        onclick="sendSongSuggestion()">
+        Enviar sugerencia
+      </button>
+
+    </div>
+
+  </div>
+		
+ <!-- MODAL ASISTENCIA -->
+  <div class="modal" id="Asistencia">
+  <div class="modal-box">
+    <button class="close" onclick="closeModal('Asistencia')">×</button>
+
+    <h3>Confirma tu Asistencia</h3>
+
+    <p>
+      Agradecemos confirmar tu asistencia antes del 20 de septiembre
+    </p>
+
+    <!-- Input para el nombre -->
+    <input
+      type="text"
+      id="guestName"
+      placeholder="Tu nombre y apellido">
+
+    <!-- Botones de Asistiré / No Asistiré -->
+    <div style="display: flex; gap: 10px; margin: 15px 0;">
+      <button 
+        type="button" 
+        class="btn" 
+        id="btnYes" 
+        onclick="selectAttendance('yes')" 
+        style="background-color: #715776; color: white; flex: 1;">
+        Asistiré
+      </button>
+      
+      <button 
+        type="button" 
+        class="btn" 
+        id="btnNo" 
+        onclick="selectAttendance('no')" 
+        style="background-color: #715776; color: white; flex: 1;">
+        No asistiré
+      </button>
+    </div>
+
+    <!-- Campo para cantidad de personas (Oculto por defecto) -->
+    <div id="peopleBox" style="display: none; margin-bottom: 15px; text-align: left;">
+      <label for="numPeople" style="font-size: 14px; display: block; margin-bottom: 5px;">¿Cuántas personas asistirán en total?</label>
+      <input 
+        type="number" 
+        id="numPeople" 
+        min="1" 
+        value="1" 
+        placeholder="Número de personas"
+        style="width: 100%; padding: 8px; box-sizing: border-box;">
+    </div>
+
+    <!-- Botón final para enviar por WhatsApp -->
+    <button
+      class="btn"
+      style="background-color: #25D366; color: white;"
+      onclick="sendToWhatsApp()">
+      Enviar por WhatsApp
+    </button>
+  </div>
+</div>
+
+
+  <!-- MODAL VESTIMENTA -->
+  <div class="modal" id="dressModal">
+
+    <div class="modal-box">
+
+      <button
+        class="close"
+        onclick="closeModal('dressModal')">
+        ×
+      </button>
+
+      <h3>Código de Vestimenta</h3>
+
+      <p>
+        <b>Formal / Elegante</b>
+      </p>
+
+      <p>
+        Queremos verte increíble y listo para disfrutar
+        de una noche inolvidable.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- MODAL TIPS -->
+  <div class="modal" id="tipsModal">
+
+    <div class="modal-box">
+
+      <button
+        class="close"
+        onclick="closeModal('tipsModal')">
+        ×
+      </button>
+
+      <h3>Tips & Notas</h3>
+
+      <p>
+        ✨ Llega puntual<br>
+        📸 Comparte tus mejores fotos<br>
+        💃 ¡No olvides tus ganas de bailar!
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- MODAL REGALOS -->
+  <div class="modal" id="giftModal">
+
+    <div class="modal-box">
+
+      <button
+        class="close"
+        onclick="closeModal('giftModal')">
+        ×
+      </button>
+
+      <h3>Regalos</h3>
+
+      <p>
+        Su presencia es el mejor regalo que podemos recibir. Sin embargo, Si deseas tener un detalle adicional,
+      </p>
+
+      <p>
+        <b>
+         contaremos con un buzón para sobres el día de la recepción.
+        </b>
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+/* =====================================================
+   BIENVENIDA Y TRANSICIÓN DE VIDEOS
+===================================================== */
+
+const welcomeScreen = document.getElementById("welcomeScreen");
+const loopVideo = document.getElementById("loopVideo");
+const transitionVideo = document.getElementById("transitionVideo");
+const openInvitation = document.getElementById("openInvitation");
+const mainInvitation = document.getElementById("mainInvitation");
+
+let invitationOpened = false;
+
+function enterInvitation(){
+
+  if(invitationOpened) return;
+
+  invitationOpened = true;
+
+  // Activar Pantalla Completa (Fullscreen)
+  const docEl = document.documentElement;
+  if (docEl.requestFullscreen) {
+    docEl.requestFullscreen().catch(err => {
+      console.log("No se pudo activar el modo pantalla completa:", err);
+    });
+  } else if (docEl.webkitRequestFullscreen) { /* Safari / iOS */
+    docEl.webkitRequestFullscreen();
+  } else if (docEl.msRequestFullscreen) { /* IE11 */
+    docEl.msRequestFullscreen();
+  }
+
+  // Iniciar la música de la invitación
+  const music = document.getElementById("music");
+  const musicBtn = document.getElementById("musicBtn");
+
+  if(music){
+    music.play().then(function(){
+      musicBtn.textContent = "❚❚";
+    }).catch(function(err){
+      console.log("No se pudo autoreproducir la música:", err);
+      musicBtn.textContent = "♫";
+    });
+  }
+
+  // Ocultar botón
+  openInvitation.style.display = "none";
+
+  // Pausar video loop y activar video de transición
+  loopVideo.pause();
+  transitionVideo.classList.add("active");
+  transitionVideo.currentTime = 0;
+  transitionVideo.muted = false;
+
+  const playPromise = transitionVideo.play();
+
+  if(playPromise !== undefined){
+    playPromise.catch(function(){
+      transitionVideo.muted = true;
+      transitionVideo.play().catch(function(){
+        showMainInvitation();
+      });
+    });
+  }
+}
+
+
+function showMainInvitation(){
+
+  if(welcomeScreen.style.display === "none") return;
+
+  transitionVideo.pause();
+  welcomeScreen.style.opacity = "0";
+
+  setTimeout(function(){
+
+    welcomeScreen.style.display = "none";
+    mainInvitation.classList.add("show");
+
+    // Llevar al inicio de la invitación principal
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+
+    // Asegurar que la música siga reproduciéndose
+    const music = document.getElementById("music");
+    const musicBtn = document.getElementById("musicBtn");
+
+    if(music && music.paused){
+      music.play().then(function(){
+        musicBtn.textContent = "❚❚";
+      }).catch(function(){
+        musicBtn.textContent = "♫";
+      });
+    }
+
+  }, 1000);
+}
+
+
+/* Al hacer clic en "Abrir invitación": solicita Fullscreen, reproduce música e inicia el video de transición */
+openInvitation.addEventListener("click", enterInvitation);
+
+
+/* Al finalizar el video de transición: muestra la invitación principal */
+transitionVideo.addEventListener("ended", showMainInvitation);
+
+
+/* =====================================================
+   SLIDER
+===================================================== */
+
+let currentSlide = 0;
+
+const slides = document.querySelectorAll(".slide");
+const dots = document.querySelectorAll(".dot");
+const nextBtn = document.querySelector(".next");
+const prevBtn = document.querySelector(".prev");
+
+function showSlide(index){
+
+  slides.forEach(function(slide){
+    slide.classList.remove("active");
+  });
+
+  dots.forEach(function(dot){
+    dot.classList.remove("active");
+  });
+
+  slides[index].classList.add("active");
+  dots[index].classList.add("active");
+}
+
+
+nextBtn.addEventListener("click",function(){
+
+  currentSlide++;
+
+  if(currentSlide >= slides.length){
+    currentSlide = 0;
+  }
+
+  showSlide(currentSlide);
+
+});
+
+
+prevBtn.addEventListener("click",function(){
+
+  currentSlide--;
+
+  if(currentSlide < 0){
+    currentSlide = slides.length - 1;
+  }
+
+  showSlide(currentSlide);
+
+});
+
+
+dots.forEach(function(dot,index){
+
+  dot.addEventListener("click",function(){
+
+    currentSlide = index;
+    showSlide(currentSlide);
+
+  });
+
+});
+
+
+/* Cambio automático cada 4 segundos */
+setInterval(function(){
+
+  currentSlide++;
+
+  if(currentSlide >= slides.length){
+    currentSlide = 0;
+  }
+
+  showSlide(currentSlide);
+
+},4000);
+
+
+/* =====================================================
+   CUENTA REGRESIVA
+===================================================== */
+
+const targetDate =
+  new Date("2026-09-26T19:00:00-05:00").getTime();
+
+function countdown(){
+
+  const now = new Date().getTime();
+  const diff = targetDate - now;
+
+  if(diff <= 0){
+
+    document.querySelector(".countdown").innerHTML =
+      "<h3>¡Llegó el gran día!</h3>";
+
+    return;
+  }
+
+  document.getElementById("days").textContent =
+    Math.floor(diff / 86400000);
+
+  document.getElementById("hours").textContent =
+    String(
+      Math.floor((diff % 86400000) / 3600000)
+    ).padStart(2,"0");
+
+  document.getElementById("minutes").textContent =
+    String(
+      Math.floor((diff % 3600000) / 60000)
+    ).padStart(2,"0");
+
+  document.getElementById("seconds").textContent =
+    String(
+      Math.floor((diff % 60000) / 1000)
+    ).padStart(2,"0");
+}
+
+setInterval(countdown,1000);
+countdown();
+
+
+/* =====================================================
+   MODALES
+===================================================== */
+
+function openModal(id){
+  document.getElementById(id).classList.add("active");
+}
+
+function closeModal(id){
+  document.getElementById(id).classList.remove("active");
+}
+
+document.querySelectorAll(".modal").forEach(function(modal){
+
+  modal.addEventListener("click",function(e){
+
+    if(e.target === modal){
+      modal.classList.remove("active");
+    }
+
+  });
+
+});
+
+
+/* =====================================================
+   MÚSICA
+===================================================== */
+
+const music = document.getElementById("music");
+const musicBtn = document.getElementById("musicBtn");
+
+musicBtn.addEventListener("click",function(){
+
+  if(music.paused){
+
+    music.play().then(function(){
+      musicBtn.textContent = "❚❚";
+    });
+
+  }else{
+
+    music.pause();
+    musicBtn.textContent = "♫";
+
+  }
+
+});
+
+
+/* =====================================================
+   GOOGLE CALENDAR
+===================================================== */
+
+function addCalendar(){
+
+  const title =
+    encodeURIComponent("Mis XV Años - Flor Andrea");
+
+  const details =
+    encodeURIComponent("Celebración de XV años");
+
+  const location =
+    encodeURIComponent(
+      "Salon eventos El Emperador - Portoviejo"
+    );
+
+  const start = "20260926T190000";
+  const end = "20260926T235900";
+
+  const url =
+    "https://calendar.google.com/calendar/render" +
+    "?action=TEMPLATE" +
+    "&text=" + title +
+    "&dates=" + start + "/" + end +
+    "&details=" + details +
+    "&location=" + location;
+
+  window.open(url,"_blank");
+}
+
+
+/* =====================================================
+   SUGERENCIA DE CANCIÓN POR WHATSAPP
+===================================================== */
+
+function sendSongSuggestion(){
+
+  const name =
+    document.getElementById("songName").value.trim();
+
+  const song =
+    document.getElementById("songArtist").value.trim();
+
+  const link =
+    document.getElementById("songLink").value.trim();
+
+  if(!name || !song){
+
+    alert("Por favor completa tu nombre y la canción.");
+    return;
+  }
+
+  const phone = "593986663919";
+
+  const message =
+    "🎵 *Nueva sugerencia para la playlist* 🎵\n\n" +
+    "👤 Nombre: " + name + "\n" +
+    "🎶 Canción y artista: " + song + "\n" +
+    "🔗 Link: " + (link || "No proporcionado");
+
+  const whatsappURL =
+    "https://wa.me/" +
+    phone +
+    "?text=" +
+    encodeURIComponent(message);
+
+  window.open(whatsappURL,"_blank");
+
+}
+	function sendAsistencia(){
+
+  const name =
+    document.getElementById("songName").value.trim();
+
+  const song =
+    document.getElementById("songArtist").value.trim();
+
+  const link =
+    document.getElementById("songLink").value.trim();
+
+  if(!name || !song){
+
+    alert("Por favor completa tu nombre y la canción.");
+    return;
+  }
+
+  const phone = "593986663919";
+
+  const message =
+    "🎵 *Nueva sugerencia para la playlist* 🎵\n\n" +
+    "👤 Nombre: " + name + "\n" +
+    "🎶 Canción y artista: " + song + "\n" +
+    "🔗 Link: " + (link || "No proporcionado");
+
+  const whatsappURL =
+    "https://wa.me/" +
+    phone +
+    "?text=" +
+    encodeURIComponent(message);
+
+  window.open(whatsappURL,"_blank");
+
+}
+</script>
+
+	  <script>
+  const WHATSAPP_NUMBER = "593986663919"; 
+let attendanceStatus = ''; 
+
+function selectAttendance(status) {
+  attendanceStatus = status;
+  const btnYes = document.getElementById('btnYes');
+  const btnNo = document.getElementById('btnNo');
+
+  if (status === 'yes') {
+    if (btnYes) btnYes.style.opacity = '1';
+    if (btnNo) btnNo.style.opacity = '0.5';
+  } else {
+    if (btnYes) btnYes.style.opacity = '0.5';
+    if (btnNo) btnNo.style.opacity = '1';
+  }
+}
+
+function sendToWhatsApp() {
+  const name = document.getElementById('guestName').value.trim();
+
+  if (!name) {
+    alert("Por favor, ingresa tu nombre.");
+    return;
+  }
+
+  if (!attendanceStatus) {
+    alert("Por favor, selecciona si asistirás o no.");
+    return;
+  }
+
+  let message = `Hola, soy *${name}*. `;
+  
+  if (attendanceStatus === 'yes') {
+    message += `¡Sí asistiré a los XV de Andrea!`;
+  } else {
+    message += `Lamentablemente no podré asistir a los XV de Andrea, pero les deseo una excelente velada.`;
+  }
+
+  const encodedMessage = encodeURIComponent(message);
+  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+  window.open(whatsappUrl, '_blank');
+
+  if (typeof closeModal === 'function') {
+    closeModal('Asistencia');
+  }
+} 
+</script>
+
+<script>
+  document.getElementById('openInvitation').addEventListener('click', function() {
+    const elem = document.documentElement; // O puedes usar document.getElementById('welcomeScreen')
+
+    // Solicitar pantalla completa compatible con todos los navegadores
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen().catch(err => {
+        console.log("No se pudo activar pantalla completa:", err.message);
+      });
+    } else if (elem.webkitRequestFullscreen) { /* Safari */
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { /* IE11 */
+      elem.msRequestFullscreen();
+    }
+
+    // --- AQUÍ PUEDES AGREGAR TU LÓGICA DE VIDEOS O OCULTAR LA PANTALLA ---
+    // Ejemplo:
+    // document.getElementById('loopVideo').style.display = 'none';
+    // document.getElementById('transitionVideo').style.display = 'block';
+    // document.getElementById('transitionVideo').play();
+  });
+</script>
+</body>
+</html>
